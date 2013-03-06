@@ -6,6 +6,44 @@
  * 
  */
 
-class Node {
+public class Node {
 	
+	private int value;
+	private Node next;
+
+	/**
+	 * Constructors
+	 */
+	public Node(){
+		this(0, null);
+	}
+
+	public Node(int value){
+		this(value, null);
+	}
+
+	public Node(int value, Node next){
+		this.value = value;
+		this.next = next;
+	}
+
+	/**
+	 * getters and setter
+	 */
+	public void setValue(int value){
+		this.value = value;
+	}
+
+	public void setNode(Node next){
+		this.next = next;
+	}
+
+	public int getValue(){
+		return value; 
+	}
+
+	public Node getNode(){
+		return next;
+	}
+
 }
