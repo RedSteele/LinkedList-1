@@ -6,21 +6,24 @@
  */
 public class linkedList {
 	
-	private Node head;
-	private int length;
+	private static Node head;
+
+	public static void main(String[] args){
+		linkedList list = new linkedList();
+		testMethods();
+	}
 
 	/**
 	 * Constructor
 	 */
 	public linkedList(){
-		Node head = new Node();
-		length = 0;
+		this.head = new Node();
 	}
 
 	/**
 	 * getter
 	 */
-	public Node getHead(){
+	public static Node getHead(){
 		return head;
 	}
 
@@ -30,10 +33,9 @@ public class linkedList {
 	 *
 	 * @param  value - the value you want the new Node to hold
 	 */
-	public void push(int value){
-		Node next = new Node(value, head.getNext);
+	public static void push(int value){
+		Node next = new Node(value, head.getNext());
 		head.setNext(next);
-		length++;
 	}
 
 	/**
@@ -42,7 +44,13 @@ public class linkedList {
 	 *
 	 * @return - int
 	 */
-	public int length(){
+	public static int length(){
+		Node now = head;
+		int length = 0;
+		while(now.getNext() != null){
+			now = now.getNext();
+			length++;
+		}
 		return length;
 	}
 
@@ -51,37 +59,45 @@ public class linkedList {
 	 * 		set values of this list {1,2,3} and overwrite any previous values
 	 * 		
 	 */
-	public void buildOneTwoThree(){
+	public static void buildOneTwoThree(){
 		Node now = head;
-		for(int i = 1; i<=3; i++){
-			if(now.getNode() != null){
-				now = now.getNext();
-			}else{
-				push(null);
-				now = now.getNext();
-			}
-			now.setValue(i);
-			if(i == 3){
-				now.setNext(null);
-			}
+		for(int i = 3; i >= 1; i--){
+			push(i);
+			now = now.getNext();
 		}
+		//now.setNext(null);
 	}
+
+	/**
+	 * print
+	 * 		prints the linked list to the screen
+	 */
+	public static void print(){
+		int length = length();
+		Node now = head.getNext();
+		for(int i = 1; i<=length; i++){
+			System.out.print("Node " + i + ": " + now);
+		}	
+		System.out.println("The list has finished printing.");
+	}
+
 	/**
 	 * testMethods
 	 * 		runs and ensures the value of all the methods
 	 *
 	 */
-	public void testMethods(){
+	public static void testMethods(){
 		Node now = head;
 		System.out.println("Head: " + head);
-		System.out.println("Initial Length: " + length);
+		System.out.println("Initial Length: " + length());
 		push(21);
 		System.out.println("New Node that was just created by push: " + head.getNext());
-		System.out.println("New length with one node: " + length);
+		System.out.println("New length with one node: " + length());
 		buildOneTwoThree();
 		for(int i = 1; i <= 3; i++){
 			now = now.getNext();
-			System.out.println("Info about Node " + i + " in the linked list after running buildOneTwoThree: " + now);
+			System.out.println("Info about Node " + i + " in the linked list after running buildOneTwoThree: " + now + "  ");
 		}
+		print();
 	}
 }

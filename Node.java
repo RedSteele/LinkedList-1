@@ -10,6 +10,7 @@ public class Node {
 	
 	private int value;
 	private Node next;
+	private boolean nextExists = true;
 
 	/**
 	 * Constructors
@@ -51,6 +52,9 @@ public class Node {
 	 * 		returns the value and node reference of this node in string format
 	 */
 	public String toString(){
-		return "value: " + value + "\tnext Node reference: " + next; 
+		if(getNext() == null){
+			nextExists = false;
+		}
+		return "value: " + value + "\tnext Node reference: " + nextExists; 
 	}
 }
