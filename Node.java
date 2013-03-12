@@ -34,7 +34,7 @@ public class Node {
 		this.value = value;
 	}
 
-	public void setNode(Node next){
+	public void setNext(Node next){
 		this.next = next;
 	}
 
@@ -42,8 +42,15 @@ public class Node {
 		return value; 
 	}
 
-	public Node getNode(){
+	public Node getNext(){
 		return next;
 	}
 
+	/**
+	 * toString
+	 * 		returns the value and node reference of this node in string format
+	 */
+	public String toString(){
+		return "value: " + value + "\tnext Node reference: " + next; 
+	}
 }
