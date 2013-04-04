@@ -179,6 +179,25 @@ public class linkedList {
 	}
 
 	/**
+	 * insertNth
+	 * 		insert the given value into the linked list at the given n index
+	 *
+	 * @param value - value that the user wants inserted into the linkedList
+	 * @param  n - index that you want the value to be inserted into
+	 */
+	public static void insertNth(int value, int index){
+		Node n = new Node(value);
+		Node now = head;
+		for(int i = 0; i<=index; i++){
+			now = now.getNext();
+			if(i == index-1){
+				n.setNext(now.getNext());
+				now.setNext(n);
+			}
+		}
+	}
+
+	/**
 	 * testMethods
 	 * 		runs and prints the results of all the methods for debugging purposes
 	 *
@@ -229,5 +248,10 @@ public class linkedList {
 
 		//test linearSearch
 		System.out.println("Index of the number 123(linearSearch test, should be 2): " + linearSearch(123));
+
+		//test insertNth
+		insertNth(4,2);
+		System.out.println("value of node at index 2 after insertNth(insertNth test): " + getNth(2));
+		print();
 	}
 }
