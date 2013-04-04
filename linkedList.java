@@ -191,6 +191,9 @@ public class linkedList {
 		if(index == 0){
 			push(value);
 		}
+		if(index > length()){
+			return;
+		}
 		for(int i = 0; i<=index; i++){
 			now = now.getNext();
 			if(i == index-1){
@@ -217,13 +220,20 @@ public class linkedList {
 			if(now.getNext() != null){
 				now = now.getNext();
 			}else{
-				run = false;
+				run = false;;
 			}	
 		}
 		insertNth(value, index);
 	}
 
-	
+	/**
+	 * insertSort
+	 * 		sorts the linkedList in ascending order
+	 */
+	public static void insertSort(){
+		
+	}
+
 
 	/**
 	 * testMethods
