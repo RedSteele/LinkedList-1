@@ -188,6 +188,9 @@ public class linkedList {
 	public static void insertNth(int value, int index){
 		Node n = new Node(value);
 		Node now = head;
+		if(index == 0){
+			push(value);
+		}
 		for(int i = 0; i<=index; i++){
 			now = now.getNext();
 			if(i == index-1){
@@ -196,6 +199,31 @@ public class linkedList {
 			}
 		}
 	}
+
+	/**
+	 * sortedInsert
+	 * 		creates and inserts a node into a sorted linkedList so that the list stays sorted
+	 *
+	 * precondition: the list must be sorted in ascending order
+	 * @param  value - value of the node you want to insert
+	 * 
+	 */
+	public static void sortedInsert(int value){
+		Node now = head.getNext();
+		int index = 0;
+		boolean run = true;
+		while(run && now.getValue()<value){
+			index++;
+			if(now.getNext() != null){
+				now = now.getNext();
+			}else{
+				run = false;
+			}	
+		}
+		insertNth(value, index);
+	}
+
+	
 
 	/**
 	 * testMethods
@@ -252,6 +280,19 @@ public class linkedList {
 		//test insertNth
 		insertNth(4,2);
 		System.out.println("value of node at index 2 after insertNth(insertNth test): " + getNth(2));
+		print();
+
+		//test sortedInsert
+		System.out.println("sortedInsert test; the linkedList should go 4,9,10,12,13,13,15,21");
+		empty();
+		push(21);
+		push(15);
+		push(13);
+		push(13);
+		push(12);
+		push(9);
+		push(4);
+		sortedInsert(10);
 		print();
 	}
 }
