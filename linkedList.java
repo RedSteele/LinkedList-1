@@ -227,11 +227,104 @@ public class linkedList {
 	}
 
 	/**
-	 * insertSort
-	 * 		sorts the linkedList in ascending order
-	 */
+	* insertSort
+	*		rearranges nodes in list so they are sorted in ascending order
+	*
+	**/
 	public static void insertSort(){
-		
+	
+	}
+
+	/**
+	* append
+	*	given another LinkedList, appends the values from that list to the end of this list
+	*
+	*@param list - the LinkedList you wish to append to this list
+	*
+	**/
+	public static void append(LinkedList list){
+   		Node now = head;
+   		for(int i = 0; i<length(); i++){
+   			now = head.getNext();
+   		}
+   		now.setNext(list.getHead().getNext());
+	}	
+
+	/**
+	* frontBackSplit
+	*		return a length 2 array of LinkedLists that contains the front and back halves of the list
+	*
+	*@return LinkedList[2]
+	*
+	**/
+	public static LinkedList[] frontBackSplit(){
+		int halfLength = length()/2;
+		LinkedList first = new LinkedList();
+		LinkedList second = new LinkedList();
+		LinkedList[] halves = {first, second};
+		Node now = head;
+		for(int i = 0; i<halfLength; i++){
+			now = now.getNext();
+			first.push(now.getValue());
+		}
+		for(int i = halfLength; i<length(); i++){
+			now = now.getNext();
+			second.push(now.getValue());
+		}
+		return halves;
+	}
+	
+	/**
+	* removeDuplicates
+	* 		deletes any duplicate nodes from the list
+	*
+	*precondition: the list must be sorted in increasing order
+	*
+	**/
+	public static void removeDuplicates(){
+		Node now = head.getNext();
+		Node next = now.getNext();
+		int posDup = now.getValue();
+		for(int i = 1; i<length(); i++){
+			if(next.getValue() == posDup){
+				now.setNext(next.getNext());
+			}
+		}
+	}
+
+	/**
+	* alternatingSplit
+	*		returns a length 2 array of LinkedLists; the first list consists of the values of the odd nodes, and the second consists of the values of the even nodes
+	*
+	*@return LinkedList[2]
+	*
+	**/
+	public static void alternatingSplit(){
+		LinkedList first = new LinkedList();
+		LinkedList second = new LinkedList();
+		LinkedList[] halves = {first, second};
+		Node now = head;
+		for(int i = 0; i<length(); i++){
+			now = now.getNext();
+			if(i%2 == 1){
+				first.push(now.getValue());
+			}else{
+				second.push(now.getValue());
+			}	
+		}
+		return halves;
+	}	
+
+	/**
+	* sortedMerge
+	*		takes in 2 LinkedLists and returns the result of merging the 2 lists and organizing the result in ascending order
+	*
+	*@param a - the first list you want to merge
+	*@param b - the second list you want to merge
+	*
+	**/
+	public static void sortedMerge(LinkedList a, LinkedList b){
+	
 	}
 
 
