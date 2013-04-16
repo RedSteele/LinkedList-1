@@ -44,6 +44,16 @@ public class LinkedList {
 	}
 
 	/**
+	 * getLength
+	 * 		gets length of a list
+	 *
+	 * @return int
+	 */
+	public int getLength(){
+		return length();
+	}
+
+	/**
 	 * length
 	 * 		returns the number of nodes in the list
 	 *
@@ -66,10 +76,9 @@ public class LinkedList {
 	 */
 	public void buildOneTwoThree(){
 		Node now = head;
-		for(int i = 3; i >= 1; i--){
-			push(i);
-			now = now.getNext();
-		}
+		push(3);
+		push(2);
+		push(1);
 		now = head.getNext().getNext().getNext();
 		now.setNext(null);
 	}
@@ -167,7 +176,7 @@ public class LinkedList {
 		for(int i = 0; i<length; i++){
 			now = now.getNext();
 			if(now.getValue() == n){
-				index = i;
+				return i;
 			}
 		}
 		return index;
@@ -180,7 +189,7 @@ public class LinkedList {
 	 * @param value - value that the user wants inserted into the linkedList
 	 * @param  n - index that you want the value to be inserted into
 	 */
-	public void insertNth(int value, int index){
+	public void insertNth(int index, int value){
 		Node n = new Node(value);
 		Node now = head;
 		if(index == 0){
@@ -220,7 +229,7 @@ public class LinkedList {
 				}	
 			}
 		}	
-		insertNth(value, index);
+		insertNth(index, value);
 	}
 
 	/**
@@ -291,6 +300,9 @@ public class LinkedList {
 	*
 	**/
 	public void removeDuplicates(){
+		if(length() == 0){
+			return;
+		}
 		Node now = head.getNext();
 		Node next = now.getNext();
 		for(int i = 1; i < length(); i++){

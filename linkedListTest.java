@@ -102,7 +102,7 @@ public class linkedListTest{
 		// System.out.println("----------------------------");
 		// list.print();
 
-		//test frontBackSplit
+		// //test frontBackSplit
 		// System.out.println("frontBackSplit test");
 		// System.out.println("Entire list");
 		// list.print();
