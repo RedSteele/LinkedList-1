@@ -1,22 +1,17 @@
 /**
- * linkedList
+ * LinkedList
  *
  * 		creates and manages a linked list
  *
  */
-public class linkedList {
+public class LinkedList {
 	
-	private static Node head;
-
-	public static void main(String[] args){
-		linkedList list = new linkedList();
-		testMethods();
-	}
+	private Node head;
 
 	/**
 	 * Constructor
 	 */
-	public linkedList(){
+	public LinkedList(){
 		this.head = new Node();
 	}
 
@@ -26,14 +21,14 @@ public class linkedList {
 	 * @param  value - the value you want the head to have
 	 * 
 	 */
-	public linkedList(int value){
+	public LinkedList(int value){
 		this.head = new Node(value);
 	}
 
 	/**
 	 * getter
 	 */
-	public static Node getHead(){
+	public Node getHead(){
 		return head;
 	}
 
@@ -43,7 +38,7 @@ public class linkedList {
 	 *
 	 * @param  value - the value you want the new Node to hold
 	 */
-	public static void push(int value){
+	public void push(int value){
 		Node next = new Node(value, head.getNext());
 		head.setNext(next);
 	}
@@ -54,7 +49,7 @@ public class linkedList {
 	 *
 	 * @return - int
 	 */
-	public static int length(){
+	public int length(){
 		Node now = head;
 		int length = 0;
 		while(now.getNext() != null){
@@ -69,7 +64,7 @@ public class linkedList {
 	 * 		set values of this list {1,2,3} and overwrite any previous values
 	 * 		
 	 */
-	public static void buildOneTwoThree(){
+	public void buildOneTwoThree(){
 		Node now = head;
 		for(int i = 3; i >= 1; i--){
 			push(i);
@@ -83,7 +78,7 @@ public class linkedList {
 	 * print
 	 * 		prints the linked list to the screen
 	 */
-	public static void print(){
+	public void print(){
 		int length = length();
 		Node now = head;
 		for(int i = 0; i<=length; i++){
@@ -102,7 +97,7 @@ public class linkedList {
 	 * @return int
 	 * 
 	 */
-	public static int count(int num){
+	public int count(int num){
 		int length = length();
 		Node now = head;
 		int count = 0;
@@ -124,7 +119,7 @@ public class linkedList {
 	 * @return int
 	 * 
 	 */
-	public static int getNth(int n){
+	public int getNth(int n){
 		int value;
 		Node now = head.getNext();
 		for(int i = 0; i<n; i++){
@@ -138,7 +133,7 @@ public class linkedList {
 	 * empty 
 	 * 		empties the list
 	 */
-	public static void empty(){
+	public void empty(){
 		head.setNext(null);
 	}
 
@@ -150,7 +145,7 @@ public class linkedList {
 	 * 
 	 * @return int;
 	 */
-	public static int pop(){
+	public int pop(){
 		Node first = head.getNext();
 		Node now = first.getNext();
 		head.setNext(now);
@@ -165,7 +160,7 @@ public class linkedList {
 	 *
 	 * @return int
 	 */
-	public static int linearSearch(int n){
+	public int linearSearch(int n){
 		Node now = head;
 		int length = length();
 		int index = -1;
@@ -185,7 +180,7 @@ public class linkedList {
 	 * @param value - value that the user wants inserted into the linkedList
 	 * @param  n - index that you want the value to be inserted into
 	 */
-	public static void insertNth(int value, int index){
+	public void insertNth(int value, int index){
 		Node n = new Node(value);
 		Node now = head;
 		if(index == 0){
@@ -211,18 +206,20 @@ public class linkedList {
 	 * @param  value - value of the node you want to insert
 	 * 
 	 */
-	public static void sortedInsert(int value){
+	public void sortedInsert(int value){
 		Node now = head.getNext();
 		int index = 0;
 		boolean run = true;
-		while(run && now.getValue()<value){
-			index++;
-			if(now.getNext() != null){
-				now = now.getNext();
-			}else{
-				run = false;;
-			}	
-		}
+		if(now != null){
+			while(run && now.getValue()<value){
+				index++;
+				if(now.getNext() != null){
+					now = now.getNext();
+				}else{
+					run = false;;
+				}	
+			}
+		}	
 		insertNth(value, index);
 	}
 
@@ -231,8 +228,17 @@ public class linkedList {
 	*		rearranges nodes in list so they are sorted in ascending order
 	*
 	**/
-	public static void insertSort(){
-	
+	public void insertSort(){
+		int[] values = new int[length()];
+		Node now = head;
+		for(int i = 0; i<length(); i++){
+			now = now.getNext();
+			values[i] = now.getValue();
+		}
+		empty();
+		for(int i = 0; i<values.length; i++){
+			sortedInsert(values[i]);
+		}
 	}
 
 	/**
@@ -242,12 +248,12 @@ public class linkedList {
 	*@param list - the LinkedList you wish to append to this list
 	*
 	**/
-	public static void append(LinkedList list){
+	public void append(LinkedList l){
    		Node now = head;
    		for(int i = 0; i<length(); i++){
-   			now = head.getNext();
+   			now = now.getNext();
    		}
-   		now.setNext(list.getHead().getNext());
+   		now.setNext(l.getHead().getNext());
 	}	
 
 	/**
@@ -257,19 +263,22 @@ public class linkedList {
 	*@return LinkedList[2]
 	*
 	**/
-	public static LinkedList[] frontBackSplit(){
+	public LinkedList[] frontBackSplit(){
 		int halfLength = length()/2;
 		LinkedList first = new LinkedList();
 		LinkedList second = new LinkedList();
 		LinkedList[] halves = {first, second};
 		Node now = head;
-		for(int i = 0; i<halfLength; i++){
+		int[] values = new int[length()];
+		for(int i = 0; i<length(); i++){
 			now = now.getNext();
-			first.push(now.getValue());
+			values[i] = now.getValue();
 		}
-		for(int i = halfLength; i<length(); i++){
-			now = now.getNext();
-			second.push(now.getValue());
+		for(int i = halfLength-1; i>=0; i--){
+			first.push(values[i]);
+		}
+		for(int i = length() - 1; i>=halfLength; i--){
+			second.push(values[i]);
 		}
 		return halves;
 	}
@@ -281,15 +290,19 @@ public class linkedList {
 	*precondition: the list must be sorted in increasing order
 	*
 	**/
-	public static void removeDuplicates(){
+	public void removeDuplicates(){
 		Node now = head.getNext();
 		Node next = now.getNext();
 		int posDup = now.getValue();
-		for(int i = 1; i<length(); i++){
-			if(next.getValue() == posDup){
+		for(int i = 1; i < length(); i++){
+			while(posDup == next.getValue()){
 				now.setNext(next.getNext());
+				next = now.getNext();
+				posDup = now.getValue();
 			}
-		}
+			now = now.getNext();
+			next = now.getNext();
+		}	
 	}
 
 	/**
@@ -299,18 +312,22 @@ public class linkedList {
 	*@return LinkedList[2]
 	*
 	**/
-	public static void alternatingSplit(){
+	public LinkedList[] alternatingSplit(){
 		LinkedList first = new LinkedList();
 		LinkedList second = new LinkedList();
 		LinkedList[] halves = {first, second};
 		Node now = head;
+		int[] values = new int[length()];
 		for(int i = 0; i<length(); i++){
 			now = now.getNext();
+			values[i] = now.getValue();	
+		}
+		for(int i = length() - 1; i>=0; i--){
 			if(i%2 == 1){
-				first.push(now.getValue());
+				first.push(values[i]);
 			}else{
-				second.push(now.getValue());
-			}	
+				second.push(values[i]);
+			}
 		}
 		return halves;
 	}	
@@ -323,79 +340,7 @@ public class linkedList {
 	*@param b - the second list you want to merge
 	*
 	**/
-	public static void sortedMerge(LinkedList a, LinkedList b){
+	public void sortedMerge(LinkedList a, LinkedList b){
 	
-	}
-
-
-	/**
-	 * testMethods
-	 * 		runs and prints the results of all the methods for debugging purposes
-	 *
-	 */
-	public static void testMethods(){
-		//test head
-		Node now = head;
-		System.out.println("Head: " + head);
-
-		//test length
-		System.out.println("Initial Length: " + length());
-
-		//test push
-		push(21);
-		System.out.println("New Node that was just created by push: " + head.getNext());
-		System.out.println("New length with one node: " + length());
-
-		//test buildOneTwoThree
-		buildOneTwoThree();
-		for(int i = 1; i <= 3; i++){
-			now = now.getNext();
-			System.out.println("Info about Node " + i + " in the linked list after running buildOneTwoThree: " + now + "  ");
-		}
-
-		//test count
-		System.out.println("number of ones in linkedList(count test): " + count(1));
-
-		//test getNth
-		System.out.println("value of node at index 2(getNth test): " + getNth(2));
-
-		//test print
-		print();
-
-		//test empty
-		empty();
-		System.out.print("empty test: ");
-		print();
-		push(42);
-
-		//test pop
-		System.out.println("Head reference before pop: " + head.getNext());
-		System.out.println("Value of the first element in the list(pop test): " + pop());
-		System.out.println("Head reference after pop: " + head.getNext());
-		push(12);
-		push(123);
-		push(45);
-		push(67);
-
-		//test linearSearch
-		System.out.println("Index of the number 123(linearSearch test, should be 2): " + linearSearch(123));
-
-		//test insertNth
-		insertNth(4,2);
-		System.out.println("value of node at index 2 after insertNth(insertNth test): " + getNth(2));
-		print();
-
-		//test sortedInsert
-		System.out.println("sortedInsert test; the linkedList should go 4,9,10,12,13,13,15,21");
-		empty();
-		push(21);
-		push(15);
-		push(13);
-		push(13);
-		push(12);
-		push(9);
-		push(4);
-		sortedInsert(10);
-		print();
 	}
 }
