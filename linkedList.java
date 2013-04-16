@@ -216,7 +216,7 @@ public class LinkedList {
 				if(now.getNext() != null){
 					now = now.getNext();
 				}else{
-					run = false;;
+					run = false;
 				}	
 			}
 		}	
