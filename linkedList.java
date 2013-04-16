@@ -293,15 +293,17 @@ public class LinkedList {
 	public void removeDuplicates(){
 		Node now = head.getNext();
 		Node next = now.getNext();
-		int counter = 0; 
 		for(int i = 1; i < length(); i++){
-			while(i<length() && now.getValue() == next.getValue()){
+			while(now != null && next != null && now.getValue() == next.getValue()){
 				now.setNext(next.getNext());
 				next = now.getNext();
-				i++;
 			}
-			now = now.getNext();
-			next = now.getNext();
+			if(now != null){
+				now = now.getNext();
+			}
+			if(now != null && now.getNext() != null){	
+				next = now.getNext();
+			}	
 		}	
 	}
 

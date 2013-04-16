@@ -114,14 +114,19 @@ public class linkedListTest{
 		// splits[1].print();
 
 		list.push(2);
-		list.push(2);
+		list.push(21);
+		list.push(21);
 		list.push(150);
 		list.push(11);
 		list.push(11);
 		list.push(11);
 		list.push(11);
 		list.push(71);
+		list.push(71);
 		list.push(150);
+		list.push(1050);
+		list.push(1050);
+		list.push(1050);
 
 		//test insertSort
 		// System.out.println("INSERT SORT TEST");
