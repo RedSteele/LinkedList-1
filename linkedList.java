@@ -293,12 +293,12 @@ public class LinkedList {
 	public void removeDuplicates(){
 		Node now = head.getNext();
 		Node next = now.getNext();
-		int posDup = now.getValue();
+		int counter = 0; 
 		for(int i = 1; i < length(); i++){
-			while(posDup == next.getValue()){
+			while(i<length() && now.getValue() == next.getValue()){
 				now.setNext(next.getNext());
 				next = now.getNext();
-				posDup = now.getValue();
+				i++;
 			}
 			now = now.getNext();
 			next = now.getNext();
@@ -339,8 +339,14 @@ public class LinkedList {
 	*@param a - the first list you want to merge
 	*@param b - the second list you want to merge
 	*
+	*@return LinkedList
+	*
 	**/
-	public void sortedMerge(LinkedList a, LinkedList b){
-	
+	public static LinkedList sortedMerge(LinkedList a, LinkedList b){
+		LinkedList answer = new LinkedList();
+		answer.append(a);
+		answer.append(b);
+		answer.insertSort();
+		return answer;
 	}
 }

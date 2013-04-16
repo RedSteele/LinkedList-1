@@ -22,6 +22,8 @@ public class linkedListTest{
 
 		// //test length
 		// System.out.println("Initial Length: " + list.length());
+		// list.push(0);
+		// System.out.println("Length after adding one: " + list.length());
 
 		// //test push
 		// list.push(21);
@@ -112,11 +114,11 @@ public class linkedListTest{
 		// splits[1].print();
 
 		list.push(2);
-		list.push(31);
-		list.push(121);
-		list.push(1);
-		list.push(54);
-		list.push(93);
+		list.push(2);
+		list.push(150);
+		list.push(11);
+		list.push(11);
+		list.push(11);
 		list.push(11);
 		list.push(71);
 		list.push(150);
@@ -132,6 +134,7 @@ public class linkedListTest{
 		// list.print();
 
 		//test removeDuplicates
+		list.insertSort();
 		System.out.println("REMOVE DUPLICATES TEST");
 		System.out.println("BEFORE REMOVING DUPLICATES");
 		System.out.println("-------------------------------------");
@@ -155,5 +158,20 @@ public class linkedListTest{
 		// System.out.println("even splits");
 		// System.out.println("---------------------------");
 		// splits[1].print();
+
+		//sortedMerge test
+		// System.out.println("SORTED MERGE TEST");
+		// System.out.println("LIST ONE");
+		// System.out.println("---------------------------");
+		// list.print();
+		// two.push(534);
+		// two.push(24);
+		// System.out.println("LIST TWO");
+		// System.out.println("---------------------------");
+		// two.print();
+		// LinkedList a = LinkedList.sortedMerge(list,two);
+		// System.out.println("COMBINED, SORTED LIST");
+		// System.out.println("---------------------------");
+		// a.print();
 	}
-}
+}	
