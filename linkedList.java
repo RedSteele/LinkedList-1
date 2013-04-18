@@ -415,4 +415,29 @@ public class LinkedList {
 		LinkedList[] list = this.frontBackSplit();
 		return sortedMerge(list[0].mergeSort(), list[1].mergeSort());
 	}
+
+	/**
+	 * makeReverse
+	 * 		make and return a reversed version of this list
+	 *
+	 * @return  LinkedList
+	 */
+	public LinkedList makeReverse(){
+		LinkedList list = new LinkedList();
+		int length = length();
+		Node now = head;
+		for(int i = 0; i<length; i++){
+			now = now.getNext();
+			list.push(now.getValue());
+		}
+		return list;
+	}
+
+	/**
+	 * reverse 
+	 * 		reverses the original list by iteratively rearranging all the next references
+	 */
+	public void reverse(){
+		
+	}
 }
