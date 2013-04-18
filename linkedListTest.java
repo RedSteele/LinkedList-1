@@ -16,7 +16,7 @@ public class linkedListTest{
 		**/
 		LinkedList list = new LinkedList();
 		LinkedList two = new LinkedList();
-		System.out.println("EVERYTHING WORKS!!!!!!");
+		//System.out.println("EVERYTHING WORKS!!!!!!");
 		// //test head
 		// Node now = list.getHead();
 		// System.out.println("Head: " + list.getHead());
@@ -184,7 +184,7 @@ public class linkedListTest{
 		// System.out.println("Sorted Merge test");
 		// list.push(400);
 		// list.push(300);
-		//list.push(2);
+		// list.push(2);
 		// list.push(1);
 		// list.push(0);
 		// two.push(3);
@@ -194,5 +194,22 @@ public class linkedListTest{
 		// two.push(-2);
 		// LinkedList answer = LinkedList.sortedMerge(list,two);
 		// answer.print();
+		
+		//mergeSort Test
+		// System.out.println("MERGE SORT TEST");
+		// list.push(4);
+		// list.push(5);
+		// list.push(3);
+		// list.push(1);
+		// list.push(1);
+		// list.push(4);
+		// list.push(3);
+		// list.push(7);
+		// list.push(1);
+		// list.push(3);
+		// System.out.println("UNSORTED LIST");
+		// list.print();
+		// System.out.println("SORTED LIST");
+		// list.mergeSort().print();
 	}
 }	

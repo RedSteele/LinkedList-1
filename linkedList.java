@@ -347,11 +347,26 @@ public class LinkedList {
 	}	
 
 	/**
+	 * insert
+	 * 		method to insert a Node after a given Node
+	 *
+	 * @param  value - value you want to insert
+	 * @param  Node - Node you want to insert the value after
+	 */
+	private void insert(int value, Node n){
+		Node now = new Node(value);
+		now.setNext(n.getNext());
+		n.setNext(now);
+	}
+
+	/**
 	* sortedMerge
 	*		takes in 2 LinkedLists and returns the result of merging the 2 lists and organizing the result in ascending order
 	*
 	*@param a - the first list you want to merge
 	*@param b - the second list you want to merge
+	*
+	* precondition: both a and b must be sorted in ascending order 
 	*
 	*@return LinkedList
 	*
@@ -360,32 +375,44 @@ public class LinkedList {
 		LinkedList answer = new LinkedList();
 		Node aNow = a.getHead().getNext();
 		Node bNow = b.getHead().getNext();
-		int countA = a.length();
-		int countB = b.length();
-		for(int i = 0; i<a.length() + b.length(); i++){
+		Node answerNow = answer.getHead();
+		int aLength = a.length();
+		int bLength = b.length();
+		while(aNow != null && bNow !=null){
 			if(aNow!=null && bNow != null && aNow.getValue() < bNow.getValue()){
-				answer.insertNth(answer.length(), aNow.getValue());
+				answer.insert(aNow.getValue(), answerNow);
 				aNow = aNow.getNext();
-				countA--;
+				answerNow = answerNow.getNext();
 			}else if(bNow!=null){
-				answer.insertNth(answer.length(), bNow.getValue());
+				answer.insert(bNow.getValue(), answerNow);
 				bNow = bNow.getNext();
-				countB--;
+				answerNow = answerNow.getNext();
 			}
 		}
-		if(a.length()>=b.length()){
-			while(countA > 0){
-				answer.insertNth(answer.length(), aNow.getValue());
-				aNow = aNow.getNext();
-				countA--;
-			}
-		}else if(b.length() > a.length()){
-			while(countB > 0){
-				answer.insertNth(answer.length(), bNow.getValue());
-				bNow = bNow.getNext();
-				countB--;
-			}
-		}	
+		while(aNow!=null){
+			answer.insert(aNow.getValue(), answerNow);
+			aNow = aNow.getNext();
+			answerNow = answerNow.getNext();
+		}
+		while(bNow != null){
+			answer.insert(bNow.getValue(), answerNow);
+			bNow = bNow.getNext();
+			answerNow = answerNow.getNext();
+		}
 		return answer;
+	}
+	/**
+	 * mergeSort
+	 * 		takes in a LinkedList and sorts it ascendingly
+	 *
+	 *
+	 * @return  LinkedList
+	 */
+	public LinkedList mergeSort(){
+		if(length() <= 1){
+			return this;
+		}
+		LinkedList[] list = this.frontBackSplit();
+		return sortedMerge(list[0].mergeSort(), list[1].mergeSort());
 	}
 }
