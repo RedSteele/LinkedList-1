@@ -179,5 +179,20 @@ public class linkedListTest{
 		// System.out.println("COMBINED, SORTED LIST");
 		// System.out.println("---------------------------");
 		// a.print();
+
+		//sortedMerge Test
+		// System.out.println("Sorted Merge test");
+		// list.push(400);
+		// list.push(300);
+		//list.push(2);
+		// list.push(1);
+		// list.push(0);
+		// two.push(3);
+		// two.push(2);
+		// two.push(1);
+		// two.push(0);
+		// two.push(-2);
+		// LinkedList answer = LinkedList.sortedMerge(list,two);
+		// answer.print();
 	}
 }	

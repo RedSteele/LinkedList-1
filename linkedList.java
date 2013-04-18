@@ -358,9 +358,34 @@ public class LinkedList {
 	**/
 	public static LinkedList sortedMerge(LinkedList a, LinkedList b){
 		LinkedList answer = new LinkedList();
-		answer.append(a);
-		answer.append(b);
-		answer.insertSort();
+		Node aNow = a.getHead().getNext();
+		Node bNow = b.getHead().getNext();
+		int countA = a.length();
+		int countB = b.length();
+		for(int i = 0; i<a.length() + b.length(); i++){
+			if(aNow!=null && bNow != null && aNow.getValue() < bNow.getValue()){
+				answer.insertNth(answer.length(), aNow.getValue());
+				aNow = aNow.getNext();
+				countA--;
+			}else if(bNow!=null){
+				answer.insertNth(answer.length(), bNow.getValue());
+				bNow = bNow.getNext();
+				countB--;
+			}
+		}
+		if(a.length()>=b.length()){
+			while(countA > 0){
+				answer.insertNth(answer.length(), aNow.getValue());
+				aNow = aNow.getNext();
+				countA--;
+			}
+		}else if(b.length() > a.length()){
+			while(countB > 0){
+				answer.insertNth(answer.length(), bNow.getValue());
+				bNow = bNow.getNext();
+				countB--;
+			}
+		}	
 		return answer;
 	}
 }
