@@ -376,8 +376,6 @@ public class LinkedList {
 		Node aNow = a.getHead().getNext();
 		Node bNow = b.getHead().getNext();
 		Node answerNow = answer.getHead();
-		int aLength = a.length();
-		int bLength = b.length();
 		while(aNow != null && bNow !=null){
 			if(aNow!=null && bNow != null && aNow.getValue() < bNow.getValue()){
 				answer.insert(aNow.getValue(), answerNow);
@@ -438,6 +436,6 @@ public class LinkedList {
 	 * 		reverses the original list by iteratively rearranging all the next references
 	 */
 	public void reverse(){
-		
-	}
+			
+	}	
 }
