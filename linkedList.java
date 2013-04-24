@@ -416,7 +416,7 @@ public class LinkedList {
 
 	/**
 	 * makeReverse
-	 * 		make and return a reversed version of this list
+	 * 		makes and returns a reversed version of this list
 	 *
 	 * @return  LinkedList
 	 */
@@ -436,6 +436,54 @@ public class LinkedList {
 	 * 		reverses the original list by iteratively rearranging all the next references
 	 */
 	public void reverse(){
-			
-	}	
+		int length = length();
+		if(length<=1){
+			return;
+		}
+		Node now = head;
+		Node temp;
+		Node end = head;
+		for(int i = 0; i<length; i++){
+			for(int j = 0; j<length; j++){
+				end = end.getNext();
+			}
+			temp = now.getNext();
+			now.setNext(end);
+			end.setNext(temp);
+			now = now.getNext();
+			if(i == length-1){
+				end.setNext(null);
+			}else{
+				end = head;
+			}
+		}
+	}
+	
+	/**
+	* recursiveReverse
+	*    reverses the original list recursively
+	*
+	**/	
+	public void recursiveReverse(){
+		if(length()<=1){
+			return;
+		}
+		Node end = rReverse(head.getNext());
+		end.setNext(null);
+	}
+
+	/**
+	* rReverse
+	*    private method that actually does the sorting in recursiveReverse
+	*
+	* @param n - first Node in a list that needs to be reversed
+	*
+	* @return Node
+	**/
+	private Node rReverse(Node n){
+		if(n.getNext() == null){
+			return n;
+		}
+		return rReverse(n.getNext()).setNext(n);
+	}
 }
