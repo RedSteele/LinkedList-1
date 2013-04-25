@@ -476,14 +476,13 @@ public class LinkedList {
 	*
 	* @return Node
 	**/
-	private Node rReverse(Node n){     
- 		if (head == null || head.getNext() ==null) 
- 			return head;
-    	Node nextItem = head.getNext();
-      	head.setNext(null);      
-     	Node reverseRest = rReverse(nextItem);
-     	nextItem.setNext(head);
-     	head = reverseRest; 
-     	return head; 
+	private Node rReverse(Node current){     
+ 		if(current.getNext() == null){ 
+ 			head.setNext(current);
+ 			return current;
+ 		}
+ 		Node previous = rReverse(current.getNext());
+ 		previous.setNext(current);
+ 		return previous;
      }	
 }	
