@@ -470,16 +470,19 @@ public class LinkedList {
 
 	/**
 	* rReverse
-	*    private method that actually does the sorting in recursiveReverse
+	*    private method that actually does the switching in recursiveReverse
 	*
 	* @param n - first Node in a list that needs to be reversed
 	*
 	* @return Node
 	**/
-	private Node rReverse(Node n){
-		if(n.getNext() == null){
-			return n;
-		}
-		return rReverse(n.getNext()).setNext(n).getNext();
-	}
-}
+	private Node rReverse(Node n){     
+ 		if (head == null || head.getNext() ==null) 
+ 			return head;
+    	Node nextItem = head.getNext();
+      	head.setNext(null);      
+     	Node reverseRest = rReverse(nextItem);
+     	nextItem.setNext(head);
+     	head = reverseRest;  
+     }	
+}	
