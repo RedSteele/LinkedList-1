@@ -465,11 +465,7 @@ public class LinkedList {
 	*
 	**/	
 	public void recursiveReverse(){
-		if(length()<=1){
-			return;
-		}
-		Node end = rReverse(head.getNext());
-		end.setNext(null);
+		rReverse(head.getNext());
 	}
 
 	/**
@@ -484,6 +480,6 @@ public class LinkedList {
 		if(n.getNext() == null){
 			return n;
 		}
-		return rReverse(n.getNext()).setNext(n);
+		return rReverse(n.getNext()).setNext(n).getNext();
 	}
 }
