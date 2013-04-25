@@ -483,6 +483,7 @@ public class LinkedList {
       	head.setNext(null);      
      	Node reverseRest = rReverse(nextItem);
      	nextItem.setNext(head);
-     	head = reverseRest;  
+     	head = reverseRest; 
+     	return head; 
      }	
 }	
