@@ -465,24 +465,26 @@ public class LinkedList {
 	*
 	**/	
 	public void recursiveReverse(){
-		rReverse(head.getNext());
+		Node n = new Node();
+		n = rReverse(head.getNext());
+		this.head.setNext(n);
 	}
 
 	/**
 	* rReverse
 	*    private method that actually does the switching in recursiveReverse
 	*
-	* @param n - first Node in a list that needs to be reversed
+	* @param current - first Node in a list that needs to be reversed
 	*
 	* @return Node
 	**/
-	private Node rReverse(Node current){     
- 		if(current.getNext() == null){ 
- 			head.setNext(current);
- 			return current;
- 		}
- 		Node previous = rReverse(current.getNext());
- 		previous.setNext(current);
- 		return previous;
-     }	
+	private Node rReverse(Node current){         
+  		if (current == null || current.getNext() ==null) 
+  			return current;
+      	Node nextItem = current.getNext();
+      	current.setNext(null);      
+      	Node reverseRest = rReverse(nextItem);
+      	nextItem.setNext(current);
+		return reverseRest; 
+    }	
 }	
